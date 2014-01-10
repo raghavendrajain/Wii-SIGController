@@ -159,9 +159,14 @@ return 0.00001;
   std::cout <<"roll angle is" << roll <<std::endl;
 
   my->setDynamicsMode(false);
+
+  // This is used for moving tool according to roll angle obtained from wii movement.
   my->setAxisAndAngle(1.0, 0.0, 0.0, -roll * PI/180);  
-  //my->setAxisAndAngle(1.0, 0.0, 0.0, yaw * PI/180, true);  
-  //my->setAxisAndAngle(0.0, 0.0, 1.0, pitch * PI/180, true);  
+  
+  // This is used for moving tool according to pitch angle obtained from wii movement. 
+  //my->setAxisAndAngle(0.0, 0.0, 1.0, pitch * PI/180);  
+
+
 
   messageCount++;
   std::cout << "The mesage count is" << messageCount <<std::endl;
