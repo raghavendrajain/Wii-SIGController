@@ -58,49 +58,15 @@ static Vector3d pos;
 void MyController::onInit(InitEvent &evt) {  
 
   SimObj *obj = getObj(myname());
-  // obj->addForce(0,0,-500);
-
-
+ 
 }  
   
 double MyController::onAction(ActionEvent &evt) {  
   //return 1.0;
   SimObj *obj = getObj(myname());
  
-  double massOfTool;  
-  massOfTool = obj->getMass();
-
-  // Rotation r(0.707,0.707,0,0);
-  // Rotation r(1,0,0,0);
-  // LOG_MSG(("mass of tool : %f ", massOfTool ));
-  //if  ( accelerationValueRecieved )
-  //LOG_MSG((" Velocity set on Tool onAction() : %f %f %f ", 0.0, 0.0, zVel ));
-  //obj->addForce( 0.0,  0.0,  100 * massOfTool * zAcc); // force 5000 [kg · cm / s ^ 2] in the direction of z axis
-  //LOG_MSG(("Force Data : (%f %f %f) ", 0.0, 0.0, 100 * massOfTool * zAcc ));
-  // obj->setRotation(r);
-  // obj->setForce(0,0,-500);
-  // obj->addForce(0,0,-100);
-  //obj->addForceAtRelPos(0,0,600,1,0,6.0);
-  // static Vector3d pos;
-
-
-  obj->getPosition(pos);
-  
  
 
-  // LOG_MSG((" Current Position of Tool : %f %f %f ", pos.x(), pos.y(), pos.z() ));
-  //obj->setPosition(pos.x(), pos.y(), pos.z() - yPos);
-  // LOG_MSG((" The change in yPos is : %f  ", yPos ));
-  // obj->setRotation(r);
-  //obj->setAngularVelocity(0.0,0.0,0.0);
-  //if (evt.time() > 5)
-     //  obj->setVelocity(0,0,10);
-   //obj->setPosition(-30,70,25);
-   //obj->addForce(0,0,-100);
-  // obj->setVelocity( 0.0, 0.0, zVel ) ;
-  //obj->setVelocity(0,0,-10);
-  //if (evt.time() > 5)
-  //obj->setVelocity(0,0,0);
 
 
 return 0.00001;
@@ -119,12 +85,6 @@ return 0.00001;
   char *all_msg = (char*)evt.getMsg();
   // std::string msg;
   msg= evt.getMsg();
-
-  LOG_MSG((" Position Received by Controller"));
-
-  LOG_MSG((msg.c_str()));
-
-
 
 
   char roll_angle[10]=" "; 
@@ -155,8 +115,8 @@ return 0.00001;
 
 
 
-  LOG_MSG((" Orientation data received by the Controller : %f %f %f %f %f %f ", roll, pitch, yaw, xAcc, yAcc, zAcc ));
-  std::cout <<"roll angle is" << roll <<std::endl;
+  LOG_MSG((" Roll, pitch, yaw angles are x,y,z acceleration data of wii are : %f %f %f %f %f %f ", roll, pitch, yaw, xAcc, yAcc, zAcc ));
+  // std::cout <<"roll angle is" << roll * PI/180 <<std::endl;
 
   my->setDynamicsMode(false);
 
@@ -164,7 +124,11 @@ return 0.00001;
   my->setAxisAndAngle(1.0, 0.0, 0.0, -roll * PI/180);  
   
   // This is used for moving tool according to pitch angle obtained from wii movement. 
-  //my->setAxisAndAngle(0.0, 0.0, 1.0, pitch * PI/180);  
+  // my->setAxisAndAngle(0.0, 0.0, 1.0, pitch * PI/180);  
+
+ 
+
+
 
 
 
@@ -177,42 +141,7 @@ return 0.00001;
 
 
   
-// void MyController::onRecvMsg(RecvMsgEvent &evt) {  
-
-//   SimObj *my = getObj(myname());  
-
-//   std::string msg = evt.getMsg();  
-//   //LOG_MSG(("message received by tool controller onRecvMesg() : %s", msg.c_str()));  
-  
-
-//   //  char xAccStr[10], yAccStr[10], zAccStr[10];
  
-//   //int result;
-  
-    
-//   //result = sscanf(msg.c_str(), "%[^','],%[^','],%[^',']", xAccStr, yAccStr, zAccStr ); 
-//   //xAcc = atof(xAccStr);
-//   //yAcc = atof(yAccStr);
-//   //zAcc = atof(zAccStr);
-
-
-//     char xVelStr[10], yVelStr[10], zVelStr[10];
-
-//     int result;
-
-
-//     result = sscanf(msg.c_str(), "%[^','],%[^','],%[^',']", xVelStr, yVelStr, zVelStr );
-//     xVel = atof(xVelStr);
-//     yVel = atof(yVelStr);
-//     zVel = atof(zVelStr);
-
-  
- 
-
-
-//   //accelerationValueRecieved =true;
-
-// }  
 
 void MyController::onCollision(CollisionEvent &evt) { 
 }
